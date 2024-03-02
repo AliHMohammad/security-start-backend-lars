@@ -58,6 +58,8 @@ public class AuthenticationController {
       //The authenticate method will use the loadUserByUsername method in UserDetailsServiceImp
       Authentication authentication = authenticationManager.authenticate(uat);
 
+      //Efter ovenstående linje er vi logget på.
+
       UserWithRoles user = (UserWithRoles) authentication.getPrincipal();
       Instant now = Instant.now();
       long expiry = tokenExpiration;
