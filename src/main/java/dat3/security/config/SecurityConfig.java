@@ -70,12 +70,18 @@ public class SecurityConfig {
             //Required for error responses
             .requestMatchers(mvcMatcherBuilder.pattern("/error")).permitAll()
 
-            //This is for demo purposes only, and should be removed for a real system
-            //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/user-only")).hasAuthority("USER")
-            //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/admin-only")).hasAuthority("ADMIN")
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/demo/anonymous")).permitAll()
 
             //Use this to completely disable security (Will not work if endpoints has been marked with @PreAuthorize)
             //.requestMatchers(mvcMatcherBuilder.pattern("/**")).permitAll());
+
+            //Ved nye endpoints kan du enten vælge at tilføje den fornødne authorization herinde ELLER
+            //Skrive den direkte ovenpå endpointet i controlleren vha. annotationen @PreAuthorize("hasAuthority('ADMIN')")
+
+            //Hvis alle skal kunne tilgå et endpoint, selvom du ikke er logget ind (authenticated) SKAL du tilføje den herinde efterfulgt af .permitAll()
+            //Det er ikke tilstrækkeligt at undlade at skrive @PreAuthorize på.
+            //Hvis du undlader at skrive .permitAll() og den ingen @PreAuthorize har, så skal du stadig være logget ind (authenticated)
+
             .anyRequest().authenticated());
 
     return http.build();
