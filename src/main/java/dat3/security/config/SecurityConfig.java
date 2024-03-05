@@ -88,6 +88,9 @@ public class SecurityConfig {
             //Use this to completely disable security (Will not work if endpoints has been marked with @PreAuthorize)
             //If you are using this, then comment out .anyRequest().authenticated())
             //.requestMatchers(mvcMatcherBuilder.pattern("/**")).permitAll());
+
+            //Fortæller, at resten af endpoints, som ikke er specificeret ovenpå eller har @PreAuthorize på,
+            //Så er de pr. default krav på at man er authenticated.
             .anyRequest().authenticated());
 
     return http.build();
