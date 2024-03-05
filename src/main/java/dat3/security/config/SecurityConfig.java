@@ -83,7 +83,7 @@ public class SecurityConfig {
             //Et alternativ til at skrive @PreAuthorize på endpointet, så kan man istedet gøre det her:
             //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/user-only")).hasAuthority("USER")
             //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/admin-only")).hasAuthority("ADMIN")
-            //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/user-admin")).hasAuthority("ADMIN", "USER")
+            //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/user-admin")).hasAnyAuthority(["ADMIN", "USER"])
 
             //Use this to completely disable security (Will not work if endpoints has been marked with @PreAuthorize)
             //If you are using this, then comment out .anyRequest().authenticated())
