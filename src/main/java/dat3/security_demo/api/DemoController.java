@@ -36,7 +36,7 @@ public class DemoController {
         return new ResponseEntity<InfoResponse>(new InfoResponse("Hi Authenticated"), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @GetMapping("/user-admin")
     public ResponseEntity<InfoResponse> getUserAdminInfo() {
         return new ResponseEntity<InfoResponse>(new InfoResponse("Hi User or Admin"), HttpStatus.OK);

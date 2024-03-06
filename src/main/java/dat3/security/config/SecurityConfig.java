@@ -83,7 +83,7 @@ public class SecurityConfig {
             //Et alternativ til at skrive @PreAuthorize på endpointet, så kan man istedet gøre det her:
             //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/user-only")).hasAuthority("USER")
             //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/admin-only")).hasAuthority("ADMIN")
-            //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/user-admin")).hasAnyAuthority(["ADMIN", "USER"])
+            //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/user-admin")).hasAnyAuthority("ADMIN", "USER")
 
             //Use this to completely disable security (Will not work if endpoints has been marked with @PreAuthorize)
             //If you are using this, then comment out .anyRequest().authenticated())
@@ -91,6 +91,7 @@ public class SecurityConfig {
 
             //Fortæller, at resten af endpoints, som ikke er specificeret ovenpå eller har @PreAuthorize på,
             //Så er de pr. default krav på at man er authenticated.
+            //Slet .authenticated() og ændre til .permitAll(), hvis du vil fjerne authorization på øvrige
             .anyRequest().authenticated());
 
     return http.build();
